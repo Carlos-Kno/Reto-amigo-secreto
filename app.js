@@ -2,21 +2,50 @@
 
 // Array para almacenar los nombres de los amigos
 let amigos = [];
+let emojis = ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😜', '🤪', '😝', '🤑', '🤗', '🤭', '🤫', '🤔', '🤐', '🤨', '😐', '😑', '😶', '😏', '😒', '🙄', '😬', '🤥', '😌', '😔', '😪', '🤤', '😴', '😷', '🤒', '🤕', '🤢', '🤮', '🤧', '😵', '🤯', '🤠', '🥳', '😎', '🤓', '🧐', '😕', '😟', '🙁', '😮', '😯', '😲', '😳', '🥺', '😦', '😧', '😨', '😰', '😥', '😢', '😭', '😱', '😖', '😣', '😞', '😓', '😩', '😫', '🥱', '😤', '😡', '😠', '🤬', '😈', '👿', '💀', '☠️', '💩', '🤡', '👹', '👺', '👻', '👽', '👾', '🤖', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾'];
+let emojisUsados = [];
+
 
 // Función para agregar un amigo a la lista
 function agregarAmigo() {
     const input = document.getElementById('amigo');
-    const nombre = input.value.trim();
+    let nombre = input.value.trim().toUpperCase();
 
     if (nombre === '') {
         alert('Por favor, ingrese un nombre válido.');
         return;
     }
 
-    amigos.push(nombre);
+    nombre = verificarNombreDuplicado(nombre);
+    const emoji = obtenerEmojiAleatorio();
+
+    amigos.push({nombre, emoji});
     actualizarListaAmigos();
     input.value = '';
     input.focus();
+}
+
+// Función para verificar si el nombre ya existe en la lista
+function verificarNombreDuplicado(nombre) {
+    let nombreOriginal = nombre;
+    let contador = 1;
+
+    while (amigos.some(amigo => amigo.nombre === nombre)) {
+        nombre = `${nombreOriginal} - ${contador}`;
+        contador++;
+    }
+
+    return nombre;
+}
+
+// Función para obtener un emoji aleatorio
+function obtenerEmojiAleatorio() {
+    let emoji = emojis[Math.floor(Math.random() * emojis.length)];
+    while (emojisUsados.includes(emoji)) {
+        emoji = emojis[Math.floor(Math.random() * emojis.length)];
+    }
+    emojisUsados.push(emoji);
+    return emoji;
 }
 
 // Función para actualizar la lista visible de amigos
@@ -26,21 +55,26 @@ function actualizarListaAmigos() {
 
     amigos.forEach((amigo, index) => {
         const li = document.createElement('li');
-        li.textContent = amigo;
+        li.textContent = `${amigo.emoji} ${amigo.nombre}`;
         listaAmigos.appendChild(li);
     });
 }
 
 // Función para realizar el sorteo aleatorio
 function sortearAmigo() {
-    if (amigos.length === 0) {
-        alert('No hay nombres en la lista para sortear.');
+    if (amigos.length <= 1) {
+        alert('No hay amigos suficientes en la lista para sortear.');
         return;
     }
 
     const indiceAleatorio = Math.floor(Math.random() * amigos.length);
     const amigoSorteado = amigos[indiceAleatorio];
 
+        //Eliminar el amigo sorteado de la lista de amigos
+        amigos = amigos.filter((amigo, index) => index !== indiceAleatorio);
+        actualizarListaAmigos();
+        emojisUsados = [];
+
     const resultado = document.getElementById('resultado');
-    resultado.innerHTML = `<li>El amigo secreto es: <strong>${amigoSorteado}</strong></li>`;
+    resultado.innerHTML = `<li>El amigo secreto es: <strong>${amigoSorteado.emoji} ${amigoSorteado.nombre}</strong></li>`;
 }
