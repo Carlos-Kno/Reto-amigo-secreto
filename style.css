@@ -6,6 +6,9 @@
     --color-button-hover: #e55720;
     --color-text: #444444;
     --color-white: #FFFFFF;
+    --color-red: #FF0000;
+    --color-black: #000000;
+    --color-green: #05DF05;
 }
 
 /* Estilos generales */
@@ -30,13 +33,18 @@ body {
     width: 100%;
 }
 
-/* Banner */
+/* Background Banner*/
 .header-banner {
-    flex: 40%;
+    flex: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 0 0;
+    background-image: url('assets/amigos.jpg'); /* Reemplaza 'tu-imagen-de-fondo.jpg' con el nombre de tu imagen */
+    background-size: cover; /* Ajusta la imagen para que cubra todo el header */
+    background-position: center; /* Centra la imagen en el header */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    padding: 40px 0 0; /* Ajusta el padding según sea necesario */
+    color: rgb(14, 13, 13); /* Cambia el color del texto si es necesario */
 }
 
 /* Sección de entrada */
