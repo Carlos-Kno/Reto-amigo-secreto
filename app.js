@@ -29,10 +29,16 @@ function agregarAmigo() {
 function verificarNombreDuplicado(nombre) {
     let nombreOriginal = nombre;
     let contador = 1;
+    let duplicadoEncontrado = false;
 
     while (amigos.some(amigo => amigo.nombre === nombre)) {
         nombre = `${nombreOriginal} - ${contador}`;
         contador++;
+        duplicadoEncontrado = true;
+    }
+
+    if ( duplicadoEncontrado === true) {
+        alert('El nombre ingresado ya existe en la lista, se ha agregado un número al final para diferenciarlo.');
     }
 
     return nombre;
