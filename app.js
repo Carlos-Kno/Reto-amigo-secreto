@@ -81,6 +81,21 @@ function sortearAmigo() {
         actualizarListaAmigos();
         emojisUsados = [];
 
+// Mostrar un contador de tiempo de 5 segundos antes de mostrar el resultado
     const resultado = document.getElementById('resultado');
-    resultado.innerHTML = `<li>El amigo secreto es: <strong>${amigoSorteado.emoji} ${amigoSorteado.nombre}</strong></li>`;
+    let contador = 5;
+    resultado.innerHTML = `<li>El amigo secreto se revelará en: <strong>${contador}</strong></li>`;
+
+    const intervalo = setInterval(() => {
+        contador--;
+
+        if (contador < 0) {
+            clearInterval(intervalo);
+            resultado.innerHTML = `<li>El amigo secreto es: <strong>${amigoSorteado.emoji} ${amigoSorteado.nombre}</strong></li>`;
+        } else {
+            resultado.innerHTML = `<li>El amigo secreto se revelará en: <strong>${contador}</strong></li>`;
+        }
+    }, 1000);
 }
+ /*    resultado.innerHTML = `<li>El amigo secreto es: <strong>${amigoSorteado.emoji} ${amigoSorteado.nombre}</strong></li>`;
+}*/
