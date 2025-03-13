@@ -8,7 +8,7 @@
     --color-white: #FFFFFF;
     --color-red: #FF0000;
     --color-black: #000000;
-    --color-green: #05DF05;
+    --color-personal: #0f8ec9;
 }
 
 /* Estilos generales */
@@ -35,7 +35,7 @@ body {
 
 /* Background Banner*/
 .header-banner {
-    flex: 50%;
+    flex: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +66,7 @@ body {
     font-family: "Merriweather", serif;
     font-weight: 900;
     font-style: italic;
-    color: var(--color-white);
+    color: var(--color-personal);
 }
 
 .section-title {
