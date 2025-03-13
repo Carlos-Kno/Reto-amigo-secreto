@@ -76,11 +76,6 @@ function sortearAmigo() {
     const indiceAleatorio = Math.floor(Math.random() * amigos.length);
     const amigoSorteado = amigos[indiceAleatorio];
 
-        //Eliminar el amigo sorteado de la lista de amigos
-        amigos = amigos.filter((amigo, index) => index !== indiceAleatorio);
-        actualizarListaAmigos();
-        emojisUsados = [];
-
 // Mostrar un contador de tiempo de 5 segundos antes de mostrar el resultado
     const resultado = document.getElementById('resultado');
     let contador = 5;
@@ -92,9 +87,16 @@ function sortearAmigo() {
         if (contador < 0) {
             clearInterval(intervalo);
             resultado.innerHTML = `<li>El amigo secreto es: <strong>${amigoSorteado.emoji} ${amigoSorteado.nombre}</strong></li>`;
+
+        //Eliminar el amigo sorteado de la lista de amigos
+        amigos = amigos.filter((amigo, index) => index !== indiceAleatorio);
+        actualizarListaAmigos();
+        emojisUsados = [];
+            
         } else {
             resultado.innerHTML = `<li>El amigo secreto se revelará en: <strong>${contador}</strong></li>`;
         }
+        
     }, 1000);
 }
  /*    resultado.innerHTML = `<li>El amigo secreto es: <strong>${amigoSorteado.emoji} ${amigoSorteado.nombre}</strong></li>`;
