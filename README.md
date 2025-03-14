@@ -37,4 +37,4 @@ Para ejecutar la aplicación, abre el archivo `/index.html` en tu navegador web.
 Las contribuciones son bienvenidas. Si deseas contribuir, por favor abre un issue o envía un pull request.
 
 ## Licencia
-Este proyecto está bajo la Licencia MIT.
+Este proyecto está bajo la Licencia.
